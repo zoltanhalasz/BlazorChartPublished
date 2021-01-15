@@ -1,0 +1,62 @@
+﻿@page "/formpage"
+
+<EditForm Model="@starship" OnValidSubmit="@HandleValidSubmit" OnInvalidSubmit="@HandleInvalidSubmit" Context="EditFormContext">
+    <DataAnnotationsValidator />
+    <DxFormLayout>
+        <DxFormLayoutItem Caption="Identifier:" ColSpanMd="6">
+            <Template>
+                <DxTextBox @bind-Text="@starship.Identifier" />
+            </Template>
+        </DxFormLayoutItem>
+        <DxFormLayoutItem Caption="Primary Classification:" ColSpanMd="6">
+            <Template>
+                <DxComboBox NullText="Select classification ..."
+                            ClearButtonDisplayMode="DataEditorClearButtonDisplayMode.Auto"
+                            @bind-Value="@starship.Classification"
+                            Data="@(new List<string>() { "Defense", "Exploration", "Diplomacy" })" />
+            </Template>
+        </DxFormLayoutItem>
+        <DxFormLayoutItem Caption="Maximum Accommodation:" ColSpanMd="6">
+            <Template>
+                <DxSpinEdit Id="accommodation" @bind-Value="@starship.MaximumAccommodation" />
+            </Template>
+        </DxFormLayoutItem>
+        <DxFormLayoutItem Caption="Production Date:" ColSpanMd="6">
+            <Template>
+                <DxDateEdit @bind-Date="@starship.ProductionDate" />
+            </Template>
+        </DxFormLayoutItem>
+        <DxFormLayoutItem ColSpanMd="12">
+            <Template>
+                <ValidationSummary />
+            </Template>
+        </DxFormLayoutItem>
+        <DxFormLayoutItem ColSpanMd="12">
+            <Template>
+                <DxButton SubmitFormOnClick="true" Text="Submit" RenderStyle="ButtonRenderStyle.Secondary" />
+            </Template>
+        </DxFormLayoutItem>
+    </DxFormLayout>
+</EditForm>
+<div class="target-container" @onclick="@(() => PopupVisible = true)"></div>
+<DxPopup HeaderText="Header"
+         @bind-Visible="@PopupVisible">
+    <Content>
+        <p>
+        Form Content was saved.
+        </p>
+    </Content>
+</DxPopup>
+@code {
+    private Starship starship = new Starship();
+    bool PopupVisible { get; set; } = false;
+    private void HandleValidSubmit()
+    {
+        Console.WriteLine("OnValidSubmit");
+        PopupVisible = true;
+    }
+    private void HandleInvalidSubmit()
+    {
+        Console.WriteLine("OnInvalidSubmit");
+    }
+}
