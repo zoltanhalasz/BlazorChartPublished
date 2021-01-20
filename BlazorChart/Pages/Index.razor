@@ -1,13 +1,17 @@
 ﻿@page "/"
 
 <div class="row">
-    <a href="/stockchart" class="btn btn-primary">StockChart</a>
-    <DxComboBox Data="@Cities"
-                AllowUserInput="true"
-                NullText="Select City ..."
-                @bind-Value="@Value"
-                @bind-Text="@Text">
-    </DxComboBox>
+    <div class="col-md-4">
+        <a href="/stockchart" class="btn btn-primary">StockChart</a>
+    </div>
+    <div class="col-md-4">
+        <DxComboBox Data="@Cities"
+                    AllowUserInput="true"
+                    NullText="Select City ..."
+                    @bind-Value="@Value"
+                    @bind-Text="@Text">
+        </DxComboBox>
+    </div>    
 </div>
 
         
