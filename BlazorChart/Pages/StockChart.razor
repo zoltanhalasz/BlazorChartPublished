@@ -6,23 +6,23 @@
 }
 else
 {
-    <DxChart Data="@StockList"
-             CssClass="mw-1100">
-        <DxChartCandlestickSeries ValueField="@((StockQuote i) => i.CloseValue)" ArgumentField="@(i => i.Date)" Name="@($"StockChart")" />
-        <DxChartArgumentAxis>
-            <DxChartAxisLabel Format="ChartAxisLabelFormat.ShortDate" />
-        </DxChartArgumentAxis>
-        <DxChartTooltip>
-            @context.GetFinancialPoint().Render((financialPoint) =>
+<DxChart Data="@StockList"
+         CssClass="mw-1100">
+    <DxChartCandlestickSeries ValueField="@((StockQuote i) => i.Value)" ArgumentField="@(i => i.Date)"/>  
+    <DxChartArgumentAxis>
+        <DxChartAxisLabel Format="ChartAxisLabelFormat.ShortDate" />
+    </DxChartArgumentAxis>
+    <DxChartTooltip>
+        @context.GetFinancialPoint().Render((financialPoint) =>
                         @<div class="p-3">
                             <p>Open: @financialPoint.OpenValue</p>
                             <p>Close: @financialPoint.CloseValue</p>
                             <p>High: @financialPoint.HighValue</p>
                             <p>Low: @financialPoint.LowValue</p>
                         </div>
-                    )
-        </DxChartTooltip>
-    </DxChart>
+)
+    </DxChartTooltip>
+</DxChart>
 }
 
 
@@ -30,29 +30,38 @@ else
 
     public class StockQuote
     {
-        public decimal OpenValue { get; set; }
-        public decimal CloseValue { get; set; }
-        public decimal HighValue { get; set; }
-        public decimal LowValue { get; set; }
+        public decimal Value { get; set; }
         public DateTime Date { get; set; }
     }
 
-    List<StockQuote> StockList = new List<StockQuote>();
+    StockQuote[] StockList;
 
     protected override void OnInitialized()
     {
         StockList = GetStocks();
     }
 
-    public List<StockQuote> GetStocks()
+    public StockQuote[] GetStocks()
     {
-        List<StockQuote> list =new List<StockQuote> {
-                new StockQuote() { Date = new DateTime(2020, 05, 11), OpenValue = 20,
-                                        CloseValue = 21, HighValue = 23 , LowValue = 19 },
-                new StockQuote() { Date = new DateTime(2020, 05, 12), OpenValue = 21,
-                                        CloseValue = 22, HighValue = 24 , LowValue = 19 },
-                new StockQuote() { Date = new DateTime(2020, 05, 13), OpenValue = 22,
-                                        CloseValue = 19, HighValue = 25 , LowValue = 17 },
+        StockQuote[] list = new StockQuote[] {
+              new StockQuote() { Date = new DateTime(2020, 05, 11), Value = 20 },
+                new StockQuote() { Date = new DateTime(2020, 05, 11), Value = 23 },
+                new StockQuote() { Date = new DateTime(2020, 05, 11), Value = 19 },
+                new StockQuote() { Date = new DateTime(2020, 05, 11), Value = 21 },
+                new StockQuote() { Date = new DateTime(2020, 05, 12), Value = 21 },
+                new StockQuote() { Date = new DateTime(2020, 05, 12), Value = 19 },
+                new StockQuote() { Date = new DateTime(2020, 05, 12), Value = 24 },
+                new StockQuote() { Date = new DateTime(2020, 05, 12), Value = 22 },
+                new StockQuote() { Date = new DateTime(2020, 05, 13), Value = 22 },
+                new StockQuote() { Date = new DateTime(2020, 05, 13), Value = 19 },
+                new StockQuote() { Date = new DateTime(2020, 05, 13), Value = 28 },
+                new StockQuote() { Date = new DateTime(2020, 05, 13), Value = 27 },
+                new StockQuote() { Date = new DateTime(2020, 05, 14), Value = 27 },
+                new StockQuote() { Date = new DateTime(2020, 05, 14), Value = 13 },
+                new StockQuote() { Date = new DateTime(2020, 05, 14), Value = 30 },
+                new StockQuote() { Date = new DateTime(2020, 05, 14), Value = 20 },
+
+
             };
         return list;
     }
