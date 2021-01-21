@@ -1,0 +1,9 @@
+this is the second commit			
+# Please enter the commit		qwqqqqqfor your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch Second
+# Changes to be committed:
+#	modified:   BlazorChart/Pages/Index.razor
+#	modified:   BlazorChart/Pages/StockChart.razorq								
+
