@@ -1,16 +1,18 @@
 ﻿@page "/"
 
 <div class="row">
-    <a href="/stockchart" class="btn btn-primary">StockChart</a>
-    <DxComboBox Data="@Cities"
-                AllowUserInput="true"
-                NullText="Select City ..."
-                @bind-Value="@Value"
-                @bind-Text="@Text">
-    </DxComboBox>
-</div>
-
-        
+    <div class="col-md-2">
+        <a href="/stockchart" class="btn btn-primary">StockChart</a>
+    </div>
+    <div class="col-md-2">
+        <DxComboBox Data="@Cities"
+                    AllowUserInput="true"
+                    NullText="Select City ..."
+                    @bind-Value="@Value"
+                    @bind-Text="@Text">
+        </DxComboBox>
+    </div>
+</div>        
 
         <DxChart Data="@forecasts" LabelOverlap="ChartLabelOverlap.Hide">
             <DxChartTitle Text="Weather Forecast">
